@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Fructose</string>
+
+    <string name="title1">Saudável</string>
+    <string name="description1">Disponibilizamos um cardápio 100% saudável</string>
+
+    <string name="title2">Entrega facilitada</string>
+    <string name="description2">Levamos até você num piscar de olhos</string>
+
+    <string name="title3">Acompanhado</string>
+    <string name="description3">Nossa intenção é que você compartilhe o delicioso prato na companhia de alguém</string>
+</resources>
