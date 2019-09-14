@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Fructose</string>
+    <string name="api_response_sucess" translatable="false">success</string>
 
     <string name="title1">Saudável</string>
     <string name="description1">Disponibilizamos um cardápio 100% saudável</string>
@@ -9,4 +10,14 @@
 
     <string name="title3">Acompanhado</string>
     <string name="description3">Nossa intenção é que você compartilhe o delicioso prato na companhia de alguém</string>
+    <string name="no_internet">Sem internet</string>
+    <string name="conect_internet">Conecte-se a internet para utilizar todos os recursos do Fructose</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="errro_titulo_padrao">Algo deu errado</string>
+    <string name="failure">Um erro inesperado ocorreu. Tente  novamente, caso o erro persista, contate o suporte.</string>
+    <string name="failure_title">Algo deu errado !</string>
+    <string name="sucess_title">Sucesso !</string>
+    <string name="success">Tudo ocorreu bem</string>
 </resources>

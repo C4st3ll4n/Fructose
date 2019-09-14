@@ -26,14 +26,18 @@
             android:id="@+id/c_item_rest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             app:bt_active="true"
-            app:bt_colorActive="@color/search_active"
+            app:bt_colorActive="@color/watermelon"
             app:bt_colorInactive="@color/search_inactive"
-            app:bt_icon="@drawable/ic_android"
+            app:bt_icon="@drawable/ic_fruta"
             app:bt_padding="@dimen/internal_padding"
-            app:bt_title="Teste"
+            app:bt_title="Categoria"
             app:bt_titlePadding="@dimen/title_padding"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/c_item_rr"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,7 +45,26 @@
             android:id="@+id/c_item_rr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            app:bt_active="false"
+            app:bt_colorActive="@color/search_active"
+            app:bt_colorInactive="@color/search_inactive"
+            app:bt_icon="@drawable/ic_food_tray"
+            app:bt_padding="@dimen/internal_padding"
+            app:bt_title="Perto de você"
+            app:bt_titlePadding="@dimen/title_padding"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/c_item_r"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/c_item_rest" />
+
+        <com.gauravk.bubblenavigation.BubbleToggleView
+            android:id="@+id/c_item_r"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             app:bt_active="false"
             app:bt_colorActive="@color/search_active"
             app:bt_colorInactive="@color/search_inactive"
@@ -50,7 +73,9 @@
             app:bt_title="Teste"
             app:bt_titlePadding="@dimen/title_padding"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:layout_editor_absoluteX="182dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/c_item_rr" />
 
         <!-- Add more child items here - max upto 5 -->
 

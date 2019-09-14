@@ -12,4 +12,7 @@ public class ApiConfig {
     public static final String ESTABELECIMENTOS     = "establishments";
     public static final String GEOCODE              = "geocode";
 
+    public static final String API_PEXELS_KEY      = "563492ad6f91700001000001bae90dab75674ac79519b65251fd0a5f";
+    public static final String PEXELS_BASE_URL     = "https://api.pexels.com/v1/";
+    public static final String BUSCA               = "search";
 }

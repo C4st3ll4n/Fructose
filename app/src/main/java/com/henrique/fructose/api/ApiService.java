@@ -5,6 +5,7 @@ import com.henrique.fructose.model.Cuisine;
 import com.henrique.fructose.model.Estabelecimento;
 import com.henrique.fructose.model.category.CategoryResponse;
 import com.henrique.fructose.model.citie.CityResponse;
+import com.henrique.fructose.model.colection.CollectionResponse;
 
 import java.util.List;
 
@@ -29,15 +30,8 @@ public interface  ApiService {
     @GET(CIDADES)
     Single<CityResponse> fetchAllCities(@Query("q") String nomeCidade);
 
-    /*
-    // Create note
-    @FormUrlEncoded
-    @POST("notes/new")
-    Single<Note> createNote(@Field("note") String note);
-    * */
-
     @GET(collections)
-    Single<List<Collections>> fetchAllCollections();
+    Single<CollectionResponse> fetchAllCollections(@Query("city_id") int idCidade);
 
     @GET(cuisines)
     Single<List<Cuisine>> fetchAllCuisines();

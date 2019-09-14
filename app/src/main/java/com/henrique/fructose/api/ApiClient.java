@@ -1,22 +1,21 @@
 package com.henrique.fructose.api;
 
 import android.content.Context;
-import android.text.TextUtils;
 
-import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.henrique.fructose.api.ApiConfig.*;
+import static android.text.TextUtils.isEmpty;
+import static com.henrique.fructose.api.ApiConfig.API_KEY;
+import static com.henrique.fructose.api.ApiConfig.BASE_URL;
+import static com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory.create;
+import static okhttp3.Request.Builder;
+import static okhttp3.logging.HttpLoggingInterceptor.Level.BODY;
 
 public class ApiClient {
     private static Retrofit retrofit = null;
@@ -32,7 +31,7 @@ public class ApiClient {
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .client(okHttpClient)
-                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .addCallAdapterFactory(create())
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
@@ -46,28 +45,25 @@ public class ApiClient {
                 .writeTimeout(REQUEST_TIMEOUT, TimeUnit.SECONDS);
  
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        interceptor.setLevel(BODY);
  
         httpClient.addInterceptor(interceptor);
  
-        httpClient.addInterceptor(new Interceptor() {
-            @Override
-            public Response intercept(Chain chain) throws IOException {
-                Request original = chain.request();
-                Request.Builder requestBuilder = original.newBuilder()
-                        .addHeader("Accept", "application/json")
-                        .addHeader("Content-Type", "application/json");
- 
-                // Adding Authorization token (API Key)
-                // Requests will be denied without API key
-                if (!TextUtils.isEmpty(API_KEY)) {
-                    //requestBuilder.addHeader("Authorization", PrefUtils.getApiKey(context));
-                    requestBuilder.addHeader("user-key", API_KEY);
-                }
- 
-                Request request = requestBuilder.build();
-                return chain.proceed(request);
+        httpClient.addInterceptor(chain -> {
+            Request original = chain.request();
+            Builder requestBuilder = original.newBuilder()
+                    .addHeader("Accept", "application/json")
+                    .addHeader("Content-Type", "application/json");
+
+            // Adding Authorization token (API Key)
+            // Requests will be denied without API key
+            if (!isEmpty(API_KEY)) {
+                //requestBuilder.addHeader("Authorization", PrefUtils.getApiKey(context));
+                requestBuilder.addHeader("user-key", API_KEY);
             }
+
+            Request request = requestBuilder.build();
+            return chain.proceed(request);
         });
  
         okHttpClient = httpClient.build();

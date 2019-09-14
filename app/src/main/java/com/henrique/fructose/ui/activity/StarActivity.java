@@ -55,7 +55,7 @@ public class StarActivity extends AhoyOnboarderActivity {
 
     @Override
     public void onFinishButtonPressed() {
-        startActivity(new Intent(this, TestActivity.class));//TODO TROCAR ACTIVITY
+        startActivity(new Intent(this, MainActivity.class));//TODO TROCAR ACTIVITY
         finish();
     }
 }
