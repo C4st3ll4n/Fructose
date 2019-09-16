@@ -1,6 +1,7 @@
 package com.henrique.fructose.ui.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.henrique.fructose.R;
 import com.henrique.fructose.adapter.RestauranteAdapter;
 import com.henrique.fructose.model.restaurant.RestaurantResponse;
+import com.henrique.fructose.ui.activity.RestaurantDetailsActivity;
 import com.henrique.fructose.viewmodel.MainFragmentViewModel;
 
 import java.util.ArrayList;
@@ -79,13 +81,16 @@ public class PertoFragment extends Fragment {
     }
 
     private void listRestaurants() {
-        mViewModel.getRestauranteRepository().observe(this, (restaurantResponse) -> {
+        mViewModel.getRestauranteRepositoryReverse().observe(this, (restaurantResponse) -> {
             try {
 
                 if (restaurantResponse.getResultsFound() > 0) {
                     restauranteAdapter = new RestauranteAdapter(restaurantResponse,
                             getActivity(), () -> {
                         //TODO REDIRECT TO THE RESTAURANT PAGE
+                        Intent i = new Intent(getActivity(), RestaurantDetailsActivity.class);
+                        //i.putExtra();
+                        startActivity(i);
                     });
                     noPlace(VISIBLE, GONE);
                     recyclerRestaurantes.setAdapter(restauranteAdapter);

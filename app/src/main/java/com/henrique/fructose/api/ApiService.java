@@ -44,5 +44,9 @@ public interface  ApiService {
     @GET(BUSCA_ZOMATO)
     Single<RestaurantResponse> fetchAllRestaurantes(@Query("sort") String sortType);
 
+    @GET(BUSCA_ZOMATO)
+    Single<RestaurantResponse> fetchAllRestaurantes(@Query("sort") String sortType,
+                                                    @Query("order") String order);
+
 
 }

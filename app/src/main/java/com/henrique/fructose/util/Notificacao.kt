@@ -29,6 +29,7 @@ class Notificacao {
                     .setChannelId(NOTIFICATION_DEFAULT)
                     .setPriority(NotificationCompat.PRIORITY_MAX)
                      .setLargeIcon(picture)
+                     .setSmallIcon(R.drawable.ic_watermelon)
                     .setTicker(texto)
                     .setContentIntent(
                             PendingIntent.getActivity(
@@ -40,7 +41,7 @@ class Notificacao {
                     .setStyle(NotificationCompat.BigTextStyle()
                             .bigText(texto)
                             .setBigContentTitle(tittle)
-                            .setSummaryText("Formação Fácil"))
+                            .setSummaryText("Fructose"))
                     .setAutoCancel(true)
 
             notify(context, builder.build())

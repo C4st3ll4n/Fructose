@@ -25,6 +25,14 @@ public class LoadingHelper {
         return dialog;
     }
 
+    public static TTFancyGifDialog sucess(Activity context, String title, String message){
+        init(context);
+        dialogBuilder.setTitle(title).setMessage(message)
+                .setGifResource(R.drawable.sucess).setPositiveBtnText("OK");
+        dialog = dialogBuilder.build();
+        return dialog;
+    }
+
 
     public static TTFancyGifDialog failure(Activity context ){
         init(context);
@@ -33,6 +41,15 @@ public class LoadingHelper {
         dialog = dialogBuilder.build();
         return dialog;
     }
+
+    public static TTFancyGifDialog failure(Activity context, String title, String message){
+        init(context);
+        dialogBuilder.setTitle(title).setMessage(message)
+                .setGifResource(R.drawable.failure).setPositiveBtnText("OK");
+        dialog = dialogBuilder.build();
+        return dialog;
+    }
+
     public static TTFancyGifDialog start(Activity context){
         init(context);
         return start(context, "Carregando..... ",

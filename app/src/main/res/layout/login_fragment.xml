@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/clLogionRoot"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
     <Button
         android:id="@+id/btLoginFacebook"
@@ -46,5 +45,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/btLoginFacebook"
         tools:visibility="visible" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

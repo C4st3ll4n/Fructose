@@ -37,6 +37,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.henrique.fructose.R;
 import com.henrique.fructose.session.Session;
 import com.henrique.fructose.session.UserSession;
+import com.henrique.fructose.util.Notificacao;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -45,6 +46,7 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static com.henrique.fructose.R.string.default_web_client_id;
 import static com.henrique.fructose.util.LoadingHelper.failure;
+import static com.henrique.fructose.util.LoadingHelper.sucess;
 
 public class LoginFragment extends Fragment {
 
@@ -175,7 +177,7 @@ public class LoginFragment extends Fragment {
                 AutenticarGoogle(conta);
             } else {
                 displayLogin();
-                failure(getActivity());
+                failure(getActivity(),"Ops, algo de errado", result.getStatus().getStatusMessage());
             }
         }
 
@@ -196,8 +198,13 @@ public class LoginFragment extends Fragment {
                         if (!urlFoto.equals(null))
                             userSession.setFotoUri(acct.getPhotoUrl().toString());
 
-                        userSession.selfUpdate();
-                        Session.getInstance(getActivity()).updateUserData();
+                        sucess(getActivity(),"Login com sucesso", "Seu login com o Google foi realizado com sucesso");
+
+                        Notificacao.Companion.notify
+                                (getActivity(), "Olá "+userSession.getName(),
+                                        "Seja bem vindo ao Fructose ;)");
+                        //userSession.selfUpdate();
+                        //Session.getInstance(getActivity()).updateUserData();
                     } else {
                         displayLogin();
                         String mensagem;
@@ -217,7 +224,7 @@ public class LoginFragment extends Fragment {
 
                         displayLogin();
 
-                        failure(getActivity());
+                        failure(getActivity(), "Falha nossa", mensagem);
 
                     }
                     exitGoogle();
@@ -241,6 +248,12 @@ public class LoginFragment extends Fragment {
                         userSession.setName(name);
                         userSession.setFotoUri(fotoPerfil);
                         userSession.setTelefone(fu.getPhoneNumber());
+
+                        sucess(getActivity(),"Login com sucesso", "Seu login com o Facebook foi realizado com sucesso");
+
+                        Notificacao.Companion.notify
+                                (getActivity(), "Olá "+userSession.getName(),
+                                        "Seja bem vindo ao Fructose ;)");
 
                     } else {
                         displayLogin();

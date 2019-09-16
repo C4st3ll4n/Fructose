@@ -38,4 +38,9 @@ public class MainFragmentViewModel extends ViewModel {
     public LiveData<RestaurantResponse> getRestauranteRepository() {
         return restaurantResponseMutableLiveData;
     }
+
+    public LiveData<RestaurantResponse> getRestauranteRepositoryReverse() {
+        restaurantResponseMutableLiveData = restaurantRepository.getRestaurantesReverse();
+        return restaurantResponseMutableLiveData;
+    }
 }

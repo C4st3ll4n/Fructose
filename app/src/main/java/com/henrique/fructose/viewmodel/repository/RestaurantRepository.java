@@ -63,4 +63,32 @@ public class RestaurantRepository {
                 });
         return restaurantData;
     }
+
+
+    @SuppressLint("CheckResult")
+    public MutableLiveData<RestaurantResponse> getRestaurantesReverse() {
+        MutableLiveData<RestaurantResponse> restaurantData = new MutableLiveData<>();
+        apiService.fetchAllRestaurantes("cost").subscribeOn(io())
+                .observeOn(mainThread())
+                .subscribeWith(new DisposableSingleObserver<RestaurantResponse>() {
+                    @Override
+                    public void onSuccess(RestaurantResponse restaurantResponse) {
+                        restaurantData.setValue(restaurantResponse);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        restaurantData.setValue(null);
+                        Log.d("MVVM", "Deu ruim ao recuperar restaurantes");
+                        //failure(contexto);
+                    }
+
+                    @Override
+                    protected void onStart() {
+                        super.onStart();
+                       // LoadingHelper.start(contexto);
+                    }
+                });
+        return restaurantData;
+    }
 }
