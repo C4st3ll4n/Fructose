@@ -1,4 +1,4 @@
-package com.henrique.fructose.ui.fragment.category;
+package com.henrique.fructose.ui.fragment;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -18,13 +18,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.henrique.fructose.R;
 import com.henrique.fructose.adapter.CategoriaAdapter;
+import com.henrique.fructose.adapter.RestauranteAdapter;
 import com.henrique.fructose.api.ApiPexelsClient;
 import com.henrique.fructose.api.ApiPexelsService;
 import com.henrique.fructose.model.picture.Pexels;
-import com.henrique.fructose.util.LoadingHelper;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.henrique.fructose.model.restaurant.RestaurantResponse;
+import com.henrique.fructose.viewmodel.MainFragmentViewModel;
 
 import io.reactivex.observers.DisposableSingleObserver;
 
@@ -32,23 +31,28 @@ import static com.henrique.fructose.util.LoadingHelper.*;
 import static io.reactivex.android.schedulers.AndroidSchedulers.mainThread;
 import static io.reactivex.schedulers.Schedulers.io;
 
-public class CategoriaFragment extends Fragment {
+public class MainFragment extends Fragment {
 
-    private CategoriaViewModel mViewModel;
+    private MainFragmentViewModel mViewModel;
+
     private CategoriaAdapter categoriaAdapter;
-    private View rootView;
-    private ApiPexelsService apiService;// = ApiPexelsClient.getClient().create(ApiPexelsClient.class);
-    private List<String> urls = new ArrayList<>();
-    private RecyclerView recyclerCategorias;
+    private RestauranteAdapter restauranteAdapter;
 
-    public static CategoriaFragment newInstance() {
-        return new CategoriaFragment();
+    private View rootView;
+
+    private ApiPexelsService apiService;
+
+    private RecyclerView recyclerCategorias, recyclerRestaurantes;
+    private RestaurantResponse restauranteResponse;
+
+    public static MainFragment newInstance() {
+        return new MainFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.categoria_fragment, container, false);
+        rootView = inflater.inflate(R.layout.main_fragment, container, false);
         setupLayout();
         return rootView;
     }
@@ -56,7 +60,9 @@ public class CategoriaFragment extends Fragment {
     private void setupLayout() {
 
         recyclerCategorias = rootView.findViewById(R.id.recyclerCategorias);
+        recyclerRestaurantes = rootView.findViewById(R.id.recyclerRestaurantes);
         recyclerCategorias.setHasFixedSize(true);
+        recyclerRestaurantes.setHasFixedSize(true);
     }
 
     @SuppressLint("CheckResult")
@@ -87,7 +93,7 @@ public class CategoriaFragment extends Fragment {
                     @Override
                     protected void onStart() {
                         super.onStart();
-                        start(getActivity());
+                        //start(getActivity());
                     }
                 });
 
@@ -101,23 +107,31 @@ public class CategoriaFragment extends Fragment {
         apiService = ApiPexelsClient.getClient(getActivity()).create(ApiPexelsService.class);
 
         //setupLayout();
-        mViewModel = ViewModelProviders.of(this).get(CategoriaViewModel.class);
+        mViewModel = ViewModelProviders.of(this).get(MainFragmentViewModel.class);
         mViewModel.init(getActivity());
 
         mViewModel.getCategoryRepository().observe(this, categoryResponse -> {
 
             categoriaAdapter = new CategoriaAdapter(categoryResponse.getCategories(), getActivity(),
-                    () -> Toast.makeText(getActivity(), "You clicked", Toast.LENGTH_SHORT).show(),
-                    (name, pos, imgview) -> {
-                        getUrlPexels(name, imgview);
-                        //String url = urls.get(pos);
+                    () -> Toast.makeText(getActivity(), "Clicou numa categoria", Toast.LENGTH_SHORT).show()
+                    //TODO REDIRECT TO RESTAURANTS WITH THAT CATEGORY
+                    , this::getUrlPexels);
+            recyclerCategorias.setAdapter(categoriaAdapter);
+        });
 
+        mViewModel.getRestauranteRepository().observe(this, restaurantResponse -> {
+
+            restauranteAdapter = new RestauranteAdapter(restaurantResponse, getActivity(),
+                    () -> {
+                        //TODO REDIRECT TO THE RESTAURANT PAGE
+                        Toast.makeText(getActivity(), "Clicou num restaurante",
+                                Toast.LENGTH_SHORT).show();
                     });
 
-            recyclerCategorias.setAdapter(categoriaAdapter);
+            recyclerRestaurantes.setAdapter(restauranteAdapter);
 
-            //Toast.makeText(getActivity(),categoryResponse.getCategories().toString() , Toast.LENGTH_SHORT).show();
         });
-        //categoriaAdapter.notifyDataSetChanged();
+
     }
+
 }

@@ -1,11 +1,15 @@
 package com.henrique.fructose.adapter
 
 import android.content.Context
+import android.graphics.Outline
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewOutlineProvider
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.henrique.fructose.R
 import com.henrique.fructose.adapter.viewholder.CategoriaVH
@@ -29,9 +33,27 @@ class CategoriaAdapter(listaCategoria:List<Category>, val contexto: Context, var
 
         holder.txtNome.text = category.categories.name
 
-        onPicture.getPic(category.categories.name, position, holder.img)
+        onPicture.getPic(category.categories.name,holder.img)
 
         holder.itemView.setOnClickListener { onClick.click() }
+
+        val image = holder.img
+        val curveRadius = 20F
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+
+            image.outlineProvider = object : ViewOutlineProvider() {
+
+                @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+                override fun getOutline(view: View?, outline: Outline?) {
+                    outline?.setRoundRect(0, 0, view!!.width,
+                            (view.height+curveRadius).toInt(), curveRadius)
+                }
+            }
+
+            image.clipToOutline = true
+
+        }
     }
 
 }
@@ -41,6 +63,6 @@ interface OnClick{
 }
 
 interface OnPicture{
-    fun getPic(name:String, posticao:Int, imgView:ImageView)
+    fun getPic(name:String, imgView:ImageView)
 }
 

@@ -20,4 +20,15 @@
     <string name="failure_title">Algo deu errado !</string>
     <string name="sucess_title">Sucesso !</string>
     <string name="success">Tudo ocorreu bem</string>
+    <string name="open">Aberto</string>
+    <string name="closed">FECHADO</string>
+    <string name="entrega">TEM DELIVERY</string>
+    <string name="naoentrega">SEM ENTREGA</string>
+
+    <string name="facebook_app_id">2949003308503200</string>
+    <string name="fb_login_protocol_scheme">fb2949003308503200</string>
+    <string name="title_activity_restaurant_details">Restaurante</string>
+    <string name="perfil">Perfil</string>
+    <string name="perto">Perto</string>
+    <string name="principal">Principal</string>
 </resources>

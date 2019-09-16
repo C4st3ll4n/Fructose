@@ -35,7 +35,19 @@ public class LoadingHelper {
     }
     public static TTFancyGifDialog start(Activity context){
         init(context);
-        dialogBuilder.setTitle("Carregando....").setMessage("Aguarde um pouco, estamos trazendo seu cardápio saudável.")
+        return start(context, "Carregando..... ",
+                "Aguarde um pouco, estamos trazendo seu cardápio saudável.");
+    }
+
+    public static TTFancyGifDialog start(Activity context, String mensage){
+        init(context);
+        return start(context, "Carregando..... ",
+                mensage);
+    }
+
+    public static TTFancyGifDialog start(Activity context, String mensage, String title){
+        init(context);
+        dialogBuilder.setTitle(title).setMessage(mensage)
                 .setGifResource(R.drawable.loading).setPositiveBtnText("OK");
         dialog = dialogBuilder.build();
         return dialog;

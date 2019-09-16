@@ -1,0 +1,85 @@
+{
+  "project_info": {
+    "project_number": "453810287642",
+    "firebase_url": "https://instagram-clonado.firebaseio.com",
+    "project_id": "instagram-clonado",
+    "storage_bucket": "instagram-clonado.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:453810287642:android:67f13cbdd4097874",
+        "android_client_info": {
+          "package_name": "br.com.castellan.instaclone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "453810287642-gqjhngmr23puu68tvermk1b6c44lse2v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.castellan.instaclone",
+            "certificate_hash": "5989283f980d585626fecbb03576057ccbef6689"
+          }
+        },
+        {
+          "client_id": "453810287642-d2quddq7ld49criu8obb68ve75ekaps7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqfaAg_O64GAlp3WfbMp3tW_6GpsP60Ko"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "453810287642-d2quddq7ld49criu8obb68ve75ekaps7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:453810287642:android:7ac5f816bfa2b085258da3",
+        "android_client_info": {
+          "package_name": "com.henrique.fructose"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "453810287642-nhsqkr5gafu914egslptk89r1ocr07u4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.henrique.fructose",
+            "certificate_hash": "5989283f980d585626fecbb03576057ccbef6689"
+          }
+        },
+        {
+          "client_id": "453810287642-d2quddq7ld49criu8obb68ve75ekaps7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqfaAg_O64GAlp3WfbMp3tW_6GpsP60Ko"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "453810287642-d2quddq7ld49criu8obb68ve75ekaps7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

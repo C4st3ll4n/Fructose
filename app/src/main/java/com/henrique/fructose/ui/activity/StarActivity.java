@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.codemybrainsout.onboarder.AhoyOnboarderActivity;
 import com.codemybrainsout.onboarder.AhoyOnboarderCard;
 import com.henrique.fructose.R;
+import com.henrique.fructose.session.Session;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +23,10 @@ public class StarActivity extends AhoyOnboarderActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (!Session.getInstance(this).isFirstTime()){onFinishButtonPressed();}
         //setContentView(R.layout.activity_main);
         setupIntroCards();
+
 
     }
 
@@ -55,7 +58,8 @@ public class StarActivity extends AhoyOnboarderActivity {
 
     @Override
     public void onFinishButtonPressed() {
-        startActivity(new Intent(this, MainActivity.class));//TODO TROCAR ACTIVITY
+        Session.getInstance(this).setFirstTime(false);
+        startActivity(new Intent(this, MainActivity.class));
         finish();
     }
 }

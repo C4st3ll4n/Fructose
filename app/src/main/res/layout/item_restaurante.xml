@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    app:cardBackgroundColor="#BF0D47A1"
+    app:cardCornerRadius="18dp"
+    app:cardPreventCornerOverlap="true"
+    app:cardUseCompatPadding="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="true">
+
+        <ImageView
+            android:id="@+id/imgRestauranteItem"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_140sdp"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars[15]" />
+
+        <TextView
+            android:id="@+id/txtStatusRestauranteItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/background_categoria"
+            android:backgroundTint="#C3FFFFFF"
+            android:fontFamily="sans-serif-condensed-light"
+            android:padding="6dp"
+            android:text="Aberto"
+            android:textAllCaps="true"
+            android:textColor="@color/primaryLightColor"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtAvalicaoRestauranteItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/background_categoria"
+            android:backgroundTint="#C3FFFFFF"
+            android:drawableStart="@drawable/ic_star_black_24dp"
+            android:drawablePadding="2dp"
+            android:fontFamily="sans-serif-condensed-light"
+            android:gravity="center"
+            android:padding="4dp"
+            android:paddingLeft="2dp"
+            android:text="4.5"
+            android:textAllCaps="true"
+            android:textColor="@color/secondaryTextColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imgRestauranteItem" />
+
+        <TextView
+            android:id="@+id/txtNomeRestauranteItem"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"
+            android:text="Nome do restaurante"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgRestauranteItem" />
+
+        <TextView
+            android:id="@+id/txtDescricaoRestauranteItem"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="24dp"
+            android:text="in Android, you can use android.widget.ImageView class to display an image file. Image file is easy to use but hard to master, because of the"
+            android:textColor="@color/primaryTextColor"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/txtNomeRestauranteItem"
+            app:layout_constraintStart_toStartOf="@+id/txtNomeRestauranteItem"
+            app:layout_constraintTop_toBottomOf="@+id/txtNomeRestauranteItem" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

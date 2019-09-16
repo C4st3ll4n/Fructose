@@ -4,15 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragment.category.CategoriaFragment">
+    tools:context=".ui.activity.MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerCategorias"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
         android:orientation="horizontal"
         android:scrollbars="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -29,4 +27,29 @@
         android:text="Categorias"
         app:layout_constraintBottom_toTopOf="@+id/recyclerCategorias"
         app:layout_constraintStart_toStartOf="@+id/recyclerCategorias" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerRestaurantes"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="2dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerCategorias"
+        tools:listitem="@layout/item_restaurante" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Restaurantes"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerRestaurantes"
+        app:layout_constraintStart_toStartOf="@+id/recyclerRestaurantes" />
 </androidx.constraintlayout.widget.ConstraintLayout>
