@@ -17,6 +17,7 @@
             android:id="@+id/toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+
             android:fitsSystemWindows="true"
             app:collapsedTitleTextAppearance="@style/TextoColapse"
             app:expandedTitleTextAppearance="@style/TextoColapse"
@@ -32,7 +33,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                app:srcCompat="@drawable/ic_account_box_black_24dp"
                 app:layout_collapseMode="parallax"
                 app:layout_collapseParallaxMultiplier="0.7" />
 
@@ -55,6 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
+        android:layout_margin="14dp"
         app:srcCompat="@android:drawable/ic_menu_call" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

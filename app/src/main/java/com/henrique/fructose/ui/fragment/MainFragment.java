@@ -122,9 +122,8 @@ public class MainFragment extends Fragment {
             recyclerCategorias.setAdapter(categoriaAdapter);
         });
 
-        mViewModel.getRestauranteRepository(getString(cost_param), "desc").observe(this, restaurantResponse -> {
+        mViewModel.getRestauranteRepository(getString(rating_param), "desc").observe(this, restaurantResponse -> {
 
-            if (restaurantResponse != null) {
                 restauranteAdapter = new RestauranteAdapter(restaurantResponse, getActivity(),
                         (res) -> {
                             Intent i = new Intent(getActivity(), RestaurantDetailsActivity.class);
@@ -133,7 +132,6 @@ public class MainFragment extends Fragment {
                         });
 
                 recyclerRestaurantes.setAdapter(restauranteAdapter);
-            }
         });
 
     }

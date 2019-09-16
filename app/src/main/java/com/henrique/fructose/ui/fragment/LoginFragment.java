@@ -164,7 +164,8 @@ public class LoginFragment extends Fragment {
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
 
@@ -183,7 +184,8 @@ public class LoginFragment extends Fragment {
 
     }
 
-    private void AutenticarGoogle(final GoogleSignInAccount acct) {
+    private void AutenticarGoogle(final GoogleSignInAccount acct)
+    {
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         fireAuth.signInWithCredential(credential)
@@ -203,8 +205,10 @@ public class LoginFragment extends Fragment {
                         Notificacao.Companion.notify
                                 (getActivity(), "Olá "+userSession.getName(),
                                         "Seja bem vindo ao Fructose ;)");
+
+
                         //userSession.selfUpdate();
-                        //Session.getInstance(getActivity()).updateUserData();
+                        Session.getInstance(getActivity()).CreateSessionUser(userSession);
                     } else {
                         displayLogin();
                         String mensagem;
@@ -255,6 +259,7 @@ public class LoginFragment extends Fragment {
                                 (getActivity(), "Olá "+userSession.getName(),
                                         "Seja bem vindo ao Fructose ;)");
 
+                        Session.getInstance(getActivity()).CreateSessionUser(userSession);
                     } else {
                         displayLogin();
                         String mensagem;

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -20,13 +21,15 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
 
     RestaurantX restaurantInfo;
     ImageView imagemzinea;
+    CollapsingToolbarLayout ctl;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_details);
-        setupLayout();
         getData();
+        setupLayout();
     }
 
     private void getData() {
@@ -37,8 +40,12 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
 
     @SuppressLint("CheckResult")
     private void setupLayout() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(restaurantInfo.getName());
         setSupportActionBar(toolbar);
+
+        ctl = findViewById(R.id.toolbar_layout);
+        ctl.setTitle(restaurantInfo.getName());
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action",
@@ -46,12 +53,13 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        try {
+        imagemzinea = findViewById(R.id.imagemzinea);
+
+      //  Glide.with(contexto).load(restaurantInfo.photos!![0]!!.photo!!.url).into(holder.img)
 
         Glide.with(this).load(restaurantInfo.getPhotos()
-                .get(0).getPhoto().getUrl()).centerCrop();
+                .get(0).getPhoto().getUrl()).centerCrop().into(imagemzinea);
 
-        }catch (Exception ignore){}
 
     }
 
