@@ -70,7 +70,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:17.0.0'
 
     implementation "com.github.thefuntasty.hauler:library:2.0.0"
-    implementation 'com.otaliastudios:bottomsheetcoordinatorlayout:1.0.4'
+    implementation 'com.otaliastudios:bottomsheetcoordinatorlayout:1.1.0-RC1'
     //implementation 'com.github.shrikanth7698:ChatView:v0.1.2'
 
 }

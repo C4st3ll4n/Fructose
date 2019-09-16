@@ -27,7 +27,7 @@ public class MainFragmentViewModel extends ViewModel {
         categoryResponseMutableLiveData = categoryRepository.getCategory();
 
         restaurantRepository = RestaurantRepository.getInstance(context);
-        restaurantResponseMutableLiveData = restaurantRepository.getRestaurantes();
+        //restaurantResponseMutableLiveData = restaurantRepository.getRestaurantes();
     }
 
 
@@ -35,12 +35,11 @@ public class MainFragmentViewModel extends ViewModel {
         return categoryResponseMutableLiveData;
     }
 
-    public LiveData<RestaurantResponse> getRestauranteRepository() {
-        return restaurantResponseMutableLiveData;
+    public LiveData<RestaurantResponse> getRestauranteRepository(String sortType, String order) {
+        return restaurantRepository.getRestaurantes(sortType, order);
     }
 
     public LiveData<RestaurantResponse> getRestauranteRepositoryReverse() {
-        restaurantResponseMutableLiveData = restaurantRepository.getRestaurantesReverse();
-        return restaurantResponseMutableLiveData;
+        return restaurantRepository.getRestaurantesReverse();
     }
 }

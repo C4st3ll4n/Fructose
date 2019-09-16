@@ -38,9 +38,9 @@ public class RestaurantRepository {
     }
 
     @SuppressLint("CheckResult")
-    public MutableLiveData<RestaurantResponse> getRestaurantes() {
+    public MutableLiveData<RestaurantResponse> getRestaurantes(String sortType, String order) {
         MutableLiveData<RestaurantResponse> restaurantData = new MutableLiveData<>();
-        apiService.fetchAllRestaurantes("rating").subscribeOn(io())
+        apiService.fetchAllRestaurantes(sortType, order).subscribeOn(io())
                 .observeOn(mainThread())
                 .subscribeWith(new DisposableSingleObserver<RestaurantResponse>() {
                     @Override
@@ -63,7 +63,6 @@ public class RestaurantRepository {
                 });
         return restaurantData;
     }
-
 
     @SuppressLint("CheckResult")
     public MutableLiveData<RestaurantResponse> getRestaurantesReverse() {

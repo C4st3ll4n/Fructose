@@ -3,6 +3,7 @@ package com.henrique.fructose.ui.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,15 +17,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.henrique.fructose.R;
+import com.henrique.fructose.adapter.OnClick;
+import com.henrique.fructose.adapter.OnRestaurantClick;
 import com.henrique.fructose.adapter.RestauranteAdapter;
 import com.henrique.fructose.model.restaurant.RestaurantResponse;
+import com.henrique.fructose.model.restaurant.RestaurantX;
 import com.henrique.fructose.ui.activity.RestaurantDetailsActivity;
 import com.henrique.fructose.viewmodel.MainFragmentViewModel;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
+import static com.henrique.fructose.R.string.*;
 import static com.henrique.fructose.util.LoadingHelper.failure;
 
 /**
@@ -51,9 +58,7 @@ public class PertoFragment extends Fragment {
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_perto, container, false);
         setupLayout();
-        mViewModel = ViewModelProviders.of(this).get(MainFragmentViewModel.class);
-        mViewModel.init(getActivity());
-        listRestaurants();
+
         return rootView;
     }
 
@@ -81,29 +86,29 @@ public class PertoFragment extends Fragment {
     }
 
     private void listRestaurants() {
-        mViewModel.getRestauranteRepositoryReverse().observe(this, (restaurantResponse) -> {
+        mViewModel.getRestauranteRepository(getString(rating_param), "desc").observe(this,
+                (restaurantResponse) -> {
             try {
 
-                if (restaurantResponse.getResultsFound() > 0) {
+                //if (restaurantResponse.getResultsFound() > 0) {
                     restauranteAdapter = new RestauranteAdapter(restaurantResponse,
-                            getActivity(), () -> {
-                        //TODO REDIRECT TO THE RESTAURANT PAGE
-                        Intent i = new Intent(getActivity(), RestaurantDetailsActivity.class);
-                        //i.putExtra();
-                        startActivity(i);
-                    });
+                            getActivity(), res -> {
+                                Intent i = new Intent(getActivity(), RestaurantDetailsActivity.class);
+                                i.putExtra("restaurant", res);
+                                startActivity(i);
+                            }
+                    );
                     noPlace(VISIBLE, GONE);
                     recyclerRestaurantes.setAdapter(restauranteAdapter);
 
                     restauranteResponse = restaurantResponse;
-                   // Toast.makeText(getActivity(), "Aqui", Toast.LENGTH_SHORT).show();
-                   // restauranteAdapter.notifyDataSetChanged();
                     swipePerto.setRefreshing(false);
-                }
-                else noPlace(GONE, VISIBLE);
+              //  }
+              //  else noPlace(GONE, VISIBLE);
 
             } catch (Exception e) {
-                failure(getActivity());
+                //failure(getActivity());
+                Log.d("Excepiotn", e.getLocalizedMessage());
                 swipePerto.setRefreshing(false);
                 noPlace(GONE, VISIBLE);
             }
@@ -119,6 +124,8 @@ public class PertoFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+        mViewModel = ViewModelProviders.of(this).get(MainFragmentViewModel.class);
+        mViewModel.init(getActivity());
+        listRestaurants();
     }
 }

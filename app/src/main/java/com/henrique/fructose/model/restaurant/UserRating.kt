@@ -2,6 +2,7 @@ package com.henrique.fructose.model.restaurant
 
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class UserRating(
     @SerializedName("aggregate_rating")
@@ -14,4 +15,4 @@ data class UserRating(
     val ratingText: String?,
     @SerializedName("votes")
     val votes: String?
-)
+): Serializable

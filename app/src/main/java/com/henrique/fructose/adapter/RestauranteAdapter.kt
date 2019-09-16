@@ -17,7 +17,7 @@ import com.henrique.fructose.model.restaurant.RestaurantResponse
 import com.henrique.fructose.model.restaurant.RestaurantX
 
 class RestauranteAdapter(restauranteResponse: RestaurantResponse, private val contexto: Context,
-                         private var onClick: OnClick) : RecyclerView.Adapter<RestauranteVH>() {
+                         private var onClick: OnRestaurantClick) : RecyclerView.Adapter<RestauranteVH>() {
 
     private val restauranteList = restauranteResponse.restaurants!!
 
@@ -41,7 +41,7 @@ class RestauranteAdapter(restauranteResponse: RestaurantResponse, private val co
         Glide.with(contexto).load(restaurantInfo.photos!![0]!!.photo!!.url).into(holder.img)
         reshapeImg(holder)
 
-        holder.itemView.setOnClickListener { onClick.click() }
+        holder.itemView.setOnClickListener { onClick.click(res = restaurant.restaurant) }
     }
 
     private fun isDelivery(holder: RestauranteVH, restaurantInfo: RestaurantX) {

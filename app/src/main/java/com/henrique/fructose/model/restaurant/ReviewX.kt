@@ -2,6 +2,7 @@ package com.henrique.fructose.model.restaurant
 
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class ReviewX(
     @SerializedName("comments_count")
@@ -24,4 +25,4 @@ data class ReviewX(
     val timestamp: Int?,
     @SerializedName("user")
     val user: UserX?
-)
+): Serializable

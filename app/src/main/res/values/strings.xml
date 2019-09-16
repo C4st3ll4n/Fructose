@@ -31,4 +31,6 @@
     <string name="perfil">Perfil</string>
     <string name="perto">Perto</string>
     <string name="principal">Principal</string>
+    <string name="cost_param">cost</string>
+    <string name="rating_param">rating</string>
 </resources>

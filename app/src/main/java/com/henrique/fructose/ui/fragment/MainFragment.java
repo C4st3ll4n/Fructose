@@ -1,6 +1,7 @@
 package com.henrique.fructose.ui.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,10 +24,12 @@ import com.henrique.fructose.api.ApiPexelsClient;
 import com.henrique.fructose.api.ApiPexelsService;
 import com.henrique.fructose.model.picture.Pexels;
 import com.henrique.fructose.model.restaurant.RestaurantResponse;
+import com.henrique.fructose.ui.activity.RestaurantDetailsActivity;
 import com.henrique.fructose.viewmodel.MainFragmentViewModel;
 
 import io.reactivex.observers.DisposableSingleObserver;
 
+import static com.henrique.fructose.R.string.*;
 import static com.henrique.fructose.util.LoadingHelper.*;
 import static io.reactivex.android.schedulers.AndroidSchedulers.mainThread;
 import static io.reactivex.schedulers.Schedulers.io;
@@ -119,17 +122,18 @@ public class MainFragment extends Fragment {
             recyclerCategorias.setAdapter(categoriaAdapter);
         });
 
-        mViewModel.getRestauranteRepository().observe(this, restaurantResponse -> {
+        mViewModel.getRestauranteRepository(getString(cost_param), "desc").observe(this, restaurantResponse -> {
 
-            restauranteAdapter = new RestauranteAdapter(restaurantResponse, getActivity(),
-                    () -> {
-                        //TODO REDIRECT TO THE RESTAURANT PAGE
-                        Toast.makeText(getActivity(), "Clicou num restaurante",
-                                Toast.LENGTH_SHORT).show();
-                    });
+            if (restaurantResponse != null) {
+                restauranteAdapter = new RestauranteAdapter(restaurantResponse, getActivity(),
+                        (res) -> {
+                            Intent i = new Intent(getActivity(), RestaurantDetailsActivity.class);
+                            i.putExtra("restaurant", res);
+                            startActivity(i);
+                        });
 
-            recyclerRestaurantes.setAdapter(restauranteAdapter);
-
+                recyclerRestaurantes.setAdapter(restauranteAdapter);
+            }
         });
 
     }

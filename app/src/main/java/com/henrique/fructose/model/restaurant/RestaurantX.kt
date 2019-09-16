@@ -2,6 +2,7 @@ package com.henrique.fructose.model.restaurant
 
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class RestaurantX(
     @SerializedName("all_reviews")
@@ -82,4 +83,4 @@ data class RestaurantX(
     val url: String?,
     @SerializedName("user_rating")
     val userRating: UserRating?
-)
+): Serializable

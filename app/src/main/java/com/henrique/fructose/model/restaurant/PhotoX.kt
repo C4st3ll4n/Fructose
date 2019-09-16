@@ -2,6 +2,7 @@ package com.henrique.fructose.model.restaurant
 
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class PhotoX(
     @SerializedName("caption")
@@ -24,4 +25,4 @@ data class PhotoX(
     val user: User?,
     @SerializedName("width")
     val width: Int?
-)
+): Serializable

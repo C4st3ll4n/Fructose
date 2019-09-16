@@ -2,6 +2,7 @@ package com.henrique.fructose.model.restaurant
 
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class User(
     @SerializedName("foodie_color")
@@ -18,4 +19,4 @@ data class User(
     val profileImage: String?,
     @SerializedName("profile_url")
     val profileUrl: String?
-)
+): Serializable

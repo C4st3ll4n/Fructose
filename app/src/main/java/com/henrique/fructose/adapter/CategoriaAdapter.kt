@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.henrique.fructose.R
 import com.henrique.fructose.adapter.viewholder.CategoriaVH
 import com.henrique.fructose.model.category.Category
+import com.henrique.fructose.model.restaurant.RestaurantX
 
 class CategoriaAdapter(listaCategoria:List<Category>, val contexto: Context, var onClick: OnClick, var onPicture: OnPicture)
     : RecyclerView.Adapter<CategoriaVH>() {
@@ -56,13 +57,5 @@ class CategoriaAdapter(listaCategoria:List<Category>, val contexto: Context, var
         }
     }
 
-}
-
-interface OnClick{
-    fun click()
-}
-
-interface OnPicture{
-    fun getPic(name:String, imgView:ImageView)
 }
 
